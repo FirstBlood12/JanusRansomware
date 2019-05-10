@@ -1,7 +1,7 @@
 # JanusRansomware
 
 A source code of the Janus Ransomware(modified version of Petya Ransomware)
-This ransomware is a wiper and run on Windows XP and later.
+This ransomware is a wiper and works on Windows XP and later.
 
 # Disclaimer:
 This is a dangerous virus, (don't compile and run if you don't know the risks!)
