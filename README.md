@@ -9,6 +9,7 @@ This is a dangerous virus, (don't compile and run if you don't know the risks!)
 Don't run this virus on your host, use Virtual Machine
 
 This wiper overwrite MBR(Master Boot Record) and wipe MFT(Master File Table) sectors
+
 The key of this wiper is a: NLmCqxRLD5Wr53to
 
 # Prerequisites:
